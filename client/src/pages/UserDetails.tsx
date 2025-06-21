@@ -4,9 +4,35 @@ import { HEADING_TEXT } from "../constants/headingText";
 import Heading from "../components/Heading";
 import InputField from "../components/InputField";
 import SelectField from "../components/SelectField";
+import { useFormContext } from "../context/FormContext";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../services/auth.services";
+import { toast } from "react-toastify"; 
 
 const UserDetails = () => {
   const { title, subtitle } = HEADING_TEXT.userDetails;
+  const { name, phone, location, setName, setPhone, setLocation, role, language } = useFormContext();
+  const isValid = name.trim() && phone.trim() && location;
+
+  const navigate = useNavigate();
+
+  const formattedPhone = phone.startsWith("+") ? phone : `+91${phone}`;
+
+  const handleSubmit = async () => {
+    try {
+      if (!role || !language) {
+        toast.warn("Role and language are required");
+        // alert("Role and language are required");
+        return;
+      }
+      await registerUser({ name, phone:formattedPhone, location, role, language });
+      toast.success("OTP sent successfully!");
+      navigate("/otp");
+    } catch (err) {
+      toast.error((err as Error).message || "Something went wrong");
+      // alert((err as Error).message || "Something went wrong");
+    }
+  };
 
   return (
     <div className="min-h-screen sm:bg-gradient-to-r from-green-100 via-white to-green-100 flex items-center justify-center px-0 sm:px-4">
@@ -24,9 +50,15 @@ const UserDetails = () => {
 
           <div className="mt-4 flex justify-center">
             <form className="space-y-5 mt-4 w-full max-w-3xl">
-              <InputField placeholder="Enter your name here" />
+              <InputField
+                placeholder="Enter your name here"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
               <SelectField
                 placeholder="Select your delivery location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
                 icon={
                   <svg
                     className="w-5 h-5"
@@ -48,21 +80,22 @@ const UserDetails = () => {
                   </svg>
                 }
                 options={[
-                  { label: "Bangalore", value: "bangalore" },
-                  { label: "Hyderabad", value: "hyderabad" },
-                  { label: "Pune", value: "pune" },
-                  { label: "Other", value: "other" },
+                  { label: "Calicut", value: "Calicut" },
+                  { label: "Kochi", value: "Kochi" },
+                  { label: "Trivandrum", value: "Trivandrum" },
                 ]}
               />
               <InputField
                 type="tel"
                 placeholder="Enter your phone number (for OTP verification)"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               />
             </form>
           </div>
         </div>
 
-        <Button />
+        <Button disabled={!isValid} onClick={handleSubmit} />
       </div>
     </div>
   );

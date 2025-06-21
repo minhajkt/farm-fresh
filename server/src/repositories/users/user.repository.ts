@@ -11,10 +11,15 @@ export class UserRepository extends BaseRepository<IUser> implements IUserReposi
   }
 
   async findByPhone(phone: string): Promise<IUser | null> {
-    return await this.findOne({ phone });
+    // const formattedPhone = `+91${phone}`
+    return await this.findOne({ phone});
   }
 
   async updateUser(userId: string, userData: Partial<IUser>): Promise<IUser | null> {
     return await this.update(userId, userData)
+  }
+
+  async updateOtp(phone: string, otp: string): Promise<void> {
+    await this.updateOne({ phone }, { otp  });
   }
 }

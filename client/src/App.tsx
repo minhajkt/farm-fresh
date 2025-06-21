@@ -5,6 +5,8 @@ import RoleSelection from './pages/RoleSelection';
 import FarmDetails from './pages/FarmDetails';
 import UserDetails from './pages/UserDetails';
 import OTPVerification from './pages/OTPVerifcation';
+import HomePage from './pages/HomePage';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (
@@ -17,8 +19,10 @@ const App = () => {
           <Route path="/farm" element={<FarmDetails />} />
           <Route path="/user" element={<UserDetails />} />
           <Route path="/otp" element={<OTPVerification />} />
+          <Route path="/home" element={<HomePage />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </>
   );
 }

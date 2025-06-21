@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from './routes/auth.routes'
+import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const app = express();
 connectDB();
 
 app.use(cors({
-    origin:process.env.CORS_ORIGIN,
+    origin:'http://localhost:5173',
     credentials:true
 }))
 
@@ -27,6 +28,8 @@ app.use("/api/auth", authRoutes);
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello world");
 });
+
+// app.use(errorHandler as express.ErrorRequestHandler);
 
 app.listen(port, () => {
   console.log(`Listening to port ${port}`);

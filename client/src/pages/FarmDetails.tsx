@@ -42,10 +42,9 @@ const FarmDetails = () => {
                   </svg>
                 }
                 options={[
-                  { label: "Bangalore", value: "bangalore" },
-                  { label: "Hyderabad", value: "hyderabad" },
-                  { label: "Pune", value: "pune" },
-                  { label: "Other", value: "other" },
+                  { label: "Calicut", value: "Calicut" },
+                  { label: "Kochi", value: "Kochi" },
+                  { label: "Trivandrum", value: "Trivandrum" },
                 ]}
               />
               <InputField

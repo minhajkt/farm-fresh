@@ -1,17 +1,7 @@
+import { languages } from "../constants/languages";
+import type { LanguageGridProps } from "../types/auth.types";
 import LanguageCard from "./LanguageCard";
 
-const languages = [
-  { icon: "EN", label: "English" },
-  { icon: "த", label: "தமிழ்" },
-  { icon: "മ", label: "മലയാളം" },
-  { icon: "ಕ", label: "ಕನ್ನಡ" },
-  { icon: "क", label: "हिन्दी" },
-  { icon: "త", label: "తెలుగు" },
-];
-interface LanguageGridProps {
-  selectedLang: string;
-  onSelect: (label: string) => void;
-}
 
 const LanguageGrid = ({ selectedLang, onSelect }: LanguageGridProps) => {
   return (

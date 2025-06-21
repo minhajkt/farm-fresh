@@ -1,9 +1,7 @@
 import { useRef, useState } from "react";
+import type { OtpInputProps } from "../types/auth.types";
 
-interface OtpInputProps {
-  length?: number; 
-  onChange?: (value: string) => void;
-}
+
 
 const OtpInput = ({ length = 4, onChange }: OtpInputProps) => {
   const [otp, setOtp] = useState(Array(length).fill(""));

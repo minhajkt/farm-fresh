@@ -1,15 +1,4 @@
-import type { ReactNode, SelectHTMLAttributes } from "react";
-
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  options: Option[];
-  placeholder?: string;
-  icon?: ReactNode;
-}
+import type { SelectFieldProps } from "../types/auth.types";
 
 const SelectField = ({
   options = [],

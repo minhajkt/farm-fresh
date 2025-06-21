@@ -4,9 +4,28 @@ import { HEADING_TEXT } from "../constants/headingText";
 import Heading from "../components/Heading";
 import OtpInput from "../components/OTPInput";
 import OtpTimerResend from "../components/OTPTimer";
+import { resendOTP, verifyOTP } from "../services/auth.services";
+import { useNavigate } from "react-router-dom";
+import { useFormContext } from "../context/FormContext";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const OTPVerification = () => {
   const { title, subtitle } = HEADING_TEXT.OTPDetails;
+  const {phone} = useFormContext()
+  const [otp, setOtp] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = async () => {
+    try {
+      await verifyOTP(phone, otp);
+      toast.success('OTP verification success')
+      navigate("/home");
+    } catch (err) {
+      toast.error((err as Error).message || "Something went wrong");
+      // alert((err as Error).message || "Something went wrong");
+    }
+  };
 
   return (
     <div className="min-h-screen sm:bg-gradient-to-r from-green-100 via-white to-green-100 flex items-center justify-center px-0 sm:px-4">
@@ -22,14 +41,16 @@ const OTPVerification = () => {
           </div>
           <Heading title={title} subtitle={subtitle} />
 
-          {/* <div className="mt-4 flex justify-center"> */}
-            <OtpInput />
-            <OtpTimerResend />
-            {/* <Button /> */}
-          {/* </div> */}
+          <OtpInput onChange={setOtp} />
+          <OtpTimerResend
+            duration={30}
+            onResend={async () => {
+              await resendOTP(phone); 
+            }}
+          />
         </div>
 
-        <Button />
+        <Button disabled={!otp} onClick={handleSubmit} />
       </div>
     </div>
   );

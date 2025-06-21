@@ -10,7 +10,7 @@ export const registerValidation = [
     .trim(),
 
   body("role")
-  .isIn(["buyer", "farmer"])
+  .isIn(["Buyer", "Farmer"])
   .withMessage("Invalid role"),
 
   body("farmName")
@@ -27,11 +27,8 @@ export const registerValidation = [
     .withMessage("Location is required"),
 
   body("phone")
-    .isLength({ min: 10, max: 10 })
-    .withMessage("Phone number should be of 10 digits")
-    .matches(/[0-9]/)
-    .withMessage("Phone number should contain numbers only")
-    .trim(),
+  .matches(/^\+91\d{10}$/)
+  .withMessage("Phone number must be a valid Indian number"),
 
   body("typeOfProduce")
     .optional()

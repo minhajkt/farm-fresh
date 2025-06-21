@@ -19,7 +19,7 @@ const userSchema = new Schema<IUser>(
   {
     name: { type: String, required: true, trim: true },
     phone: { type: String, required: true, unique: true },
-    role: { type: String, enum: ["buyer", "farmer"], required: true },
+    role: { type: String, enum: ["Buyer", "Farmer"], required: true },
     language : {type : String, enum : ['English', 'Hindi', 'Malayalam', 'Tamil'], default : 'English'},
     location: {
       type: String,

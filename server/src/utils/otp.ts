@@ -13,7 +13,7 @@ export async function sendOtp(phone: string, otp: string): Promise<void> {
 }
 
 export function generateOtp(): string {
-  const otp = Math.floor(100000 + Math.random() * 9000).toString();
+  const otp = Math.floor(1000 + Math.random() * 9000).toString();
   console.log('otp : ', otp )
   return otp
 }

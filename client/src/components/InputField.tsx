@@ -1,9 +1,4 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
-
-interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder?: string;
-  icon?: ReactNode;
-}
+import type { InputFieldProps } from "../types/auth.types";
 
 const InputField = ({
   placeholder,

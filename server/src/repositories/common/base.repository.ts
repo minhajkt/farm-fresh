@@ -37,6 +37,10 @@ export class BaseRepository<T extends Document> {
     return await this.model.findByIdAndUpdate(id, data, { new: true });
   }
 
+  async updateOne(filter: FilterQuery<T>, data: Partial<T>): Promise<T | null> {
+    return await this.model.findOneAndUpdate(filter, data, { new: true });
+  }
+  
   async delete(id: string): Promise<T | null> {
     return await this.model.findByIdAndDelete(id);
   }

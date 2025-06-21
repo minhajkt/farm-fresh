@@ -1,9 +1,4 @@
-interface RoleCardProps {
-  image: string;
-  label: string;
-  selected?: boolean;
-  onClick: () => void;
-}
+import type { RoleCardProps } from "../types/auth.types";
 
 const RoleCard = ({ image, label, selected, onClick }: RoleCardProps) => {
   return (

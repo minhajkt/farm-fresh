@@ -1,8 +1,5 @@
-interface LanguageCardProps {
-  icon: string;
-  label: string;
-  selected?: boolean;
-}
+import type { LanguageCardProps } from "../types/auth.types";
+
 
 const LanguageCard = ({ icon, label, selected }: LanguageCardProps) => {
   return (

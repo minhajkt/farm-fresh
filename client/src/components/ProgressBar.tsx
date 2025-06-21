@@ -1,6 +1,5 @@
-interface ProgressBarProps {
-  toCompletePercent: number; 
-}
+import type { ProgressBarProps } from "../types/auth.types";
+
 
 const ProgressBar = ({ toCompletePercent }: ProgressBarProps) => {
   const completed = 100 - toCompletePercent;
