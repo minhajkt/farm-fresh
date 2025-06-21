@@ -1,23 +1,20 @@
-import { useNavigate } from "react-router-dom";
+import BottomImageGrid from "../components/BottomImageGrid";
+import Button from "../components/Button";
+import HeroSection from "../components/HeroSection";
+import TopImageGrid from "../components/TopImageGrid";
 
-export default function Landing() {
-  const navigate = useNavigate();
-
+const Landing = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-white px-4 text-center">
-      <img src="/logo.png" alt="Logo" className="w-24 h-24 mb-6" />{" "}
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">
-        Welcome to FarmLink
-      </h1>
-      <p className="text-gray-600 mb-6">
-        Connecting farmers directly to buyers.
-      </p>
-      <button
-        className="bg-green-600 text-white px-6 py-2 rounded-full text-lg hover:bg-green-700 transition"
-        onClick={() => navigate("/select-language")}
-      >
-        Continue
-      </button>
+    <div className="min-h-screen flex flex-col justify-start bg-white">
+      <HeroSection />
+      <div className="overflow-x-hidden px-0">
+        <TopImageGrid />
+        <BottomImageGrid />
+      </div>
+      <Button />
     </div>
-  );
+
+  )
 }
+
+export default Landing;

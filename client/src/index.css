@@ -1,6 +1,34 @@
-@tailwind base;
+
+@import "tailwindcss";
+
+@layer utilities {
+  .hover-zoom {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .top-mid-images {
+    @apply rounded-3xl w-full h-[110px] sm:h-[250px] object-cover;
+  }
+}
+
+@layer utilities {
+  .bottom-mid-images {
+    @apply rounded-3xl w-full h-[90px] sm:h-[200px] object-cover;
+  }
+}
+
+
+
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body::before {
+  content: "tailwind-working";
+  color: red;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -69,4 +97,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
