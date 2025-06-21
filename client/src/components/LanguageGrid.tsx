@@ -1,4 +1,3 @@
-import { useState } from "react";
 import LanguageCard from "./LanguageCard";
 
 const languages = [
@@ -9,18 +8,18 @@ const languages = [
   { icon: "क", label: "हिन्दी" },
   { icon: "త", label: "తెలుగు" },
 ];
+interface LanguageGridProps {
+  selectedLang: string;
+  onSelect: (label: string) => void;
+}
 
-const LanguageGrid = () => {
-    const [selectedLang, setSelectedLang] = useState("");
-    const handleLanguage = (label: string) => {
-      setSelectedLang(label);
-    };
+const LanguageGrid = ({ selectedLang, onSelect }: LanguageGridProps) => {
   return (
     <div className="grid grid-cols-2 gap-4">
       {languages.map((lang, index) => (
         <div
           key={index}
-          onClick={() => handleLanguage(lang.label)}
+          onClick={() => onSelect(lang.label)}
           className="cursor-pointer hover-zoom"
         >
           <LanguageCard
@@ -35,3 +34,4 @@ const LanguageGrid = () => {
 };
 
 export default LanguageGrid;
+  

@@ -1,48 +1,42 @@
 import { useState } from "react";
-import ProgressBar from "../components/ProgressBar"; 
+import ProgressBar from "../components/ProgressBar";
 import RoleCard from "../components/RoleCard";
+import Button from "../components/Button";
+import { HEADING_TEXT } from "../constants/headingText";
+import Heading from "../components/Heading";
 
 const roles = [
-  { label: "Farmer", image: "/images/farmer.png" },
-  { label: "Buyer", image: "/images/buyer.png" },
+  { label: "Farmer", image: "/images/rr.png" },
+  { label: "Buyer", image: "/images/fff.png" },
 ];
 
-const ChooseRole = () => {
+const RoleSelection = () => {
   const [selected, setSelected] = useState("");
+  const { title, subtitle } = HEADING_TEXT.roleSelection;
 
   return (
-    <div className="min-h-screen bg-white p-5 flex flex-col justify-between max-w-md mx-auto">
-      <div>
-        <ProgressBar toCompletePercent={60} />{" "}
-        <h2 className="text-xl font-semibold text-center mt-6 mb-1">
-          Choose Your Role
-        </h2>
-        <p className="text-sm text-gray-500 text-center mb-6">
-          Select your role to get the best experience.
-        </p>
-        <div className="grid grid-cols-2 gap-4">
-          {roles.map((role) => (
-            <RoleCard
-              key={role.label}
-              label={role.label}
-              image={role.image}
-              selected={selected === role.label}
-              onClick={() => setSelected(role.label)}
-            />
-          ))}
+    <div className="min-h-screen sm:bg-gradient-to-r from-green-100 via-white to-green-100 flex items-center justify-center px-4">
+      <div className="bg-white w-full max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl p-5 sm:shadow-md rounded-md flex flex-col justify-between min-h-[90vh]">
+        <div>
+          <ProgressBar toCompletePercent={60} />
+          <Heading title={title} subtitle={subtitle}/>
+            <div className="grid grid-cols-2 gap-4">
+              {roles.map((role) => (
+                <RoleCard
+                  key={role.label}
+                  label={role.label}
+                  image={role.image}
+                  selected={selected === role.label}
+                  onClick={() => setSelected(role.label)}
+                />
+              ))}
+            </div>
         </div>
-      </div>
 
-      <button
-        className={`mt-8 bg-yellow-400 text-black font-semibold py-3 rounded-full transition-all ${
-          !selected ? "opacity-50 cursor-not-allowed" : "hover:bg-yellow-500"
-        }`}
-        disabled={!selected}
-      >
-        Continue
-      </button>
+        <Button disabled={!selected} />
+      </div>
     </div>
   );
 };
 
-export default ChooseRole;
+export default RoleSelection;

@@ -8,15 +8,15 @@ interface RoleCardProps {
 const RoleCard = ({ image, label, selected, onClick }: RoleCardProps) => {
   return (
     <div
-      className={`border rounded-xl p-4 flex flex-col items-center cursor-pointer transition-all duration-200 ${
-        selected ? "border-yellow-500 shadow-md" : "border-gray-300"
+      className={`border rounded-xl p-1 flex flex-col items-center cursor-pointer transition-all duration-200  hover-zoom ${
+        selected ? "border-green-500 shadow-md" : "border-gray-200"
       }`}
       onClick={onClick}
     >
-      <img src={image} alt={label} className="w-20 h-20 mb-3" />
+      <img src={image} alt={label} className="w-40 sm:w-100 h-30 sm:h-60 mb-3 rounded-xl" />
       <p
         className={`font-medium ${
-          selected ? "text-yellow-600 font-semibold" : "text-gray-800"
+          selected ? "font-semibold" : "text-gray-800"
         }`}
       >
         I’m a {label}
