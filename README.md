@@ -10,7 +10,7 @@ A simple MERN stack project for farmers to sell their items and users to buy it 
 - RESTful API with Express.js
 - MongoDB & Mongoose for data modeling
 - React frontend with Axios for API calls
-- Basic CRUD functionality
+- OTP Verification using Twilio
 
 ---
 
