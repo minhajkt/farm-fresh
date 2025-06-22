@@ -1,4 +1,4 @@
-# 📦 FarmFresh
+# FarmFresh
 
 A simple MERN stack project for farmers to sell their items and users to buy it from farmers directly.
 
