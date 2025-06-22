@@ -8,9 +8,12 @@ import { useFormContext } from "../context/FormContext";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/auth.services";
 import { toast } from "react-toastify"; 
+import { useState } from "react";
+import { Leaf } from "lucide-react";
 
 const UserDetails = () => {
   const { title, subtitle } = HEADING_TEXT.userDetails;
+  const [loading, setLoading] = useState(false)
   const { name, phone, location, setName, setPhone, setLocation, role, language } = useFormContext();
   const isValid = name.trim() && phone.trim() && location;
 
@@ -19,6 +22,7 @@ const UserDetails = () => {
   const formattedPhone = phone.startsWith("+") ? phone : `+91${phone}`;
 
   const handleSubmit = async () => {
+    setLoading(true)
     try {
       if (!role || !language) {
         toast.warn("Role and language are required");
@@ -31,6 +35,8 @@ const UserDetails = () => {
     } catch (err) {
       toast.error((err as Error).message || "Something went wrong");
       // alert((err as Error).message || "Something went wrong");
+    }finally {
+      setLoading(false)
     }
   };
 
@@ -47,6 +53,11 @@ const UserDetails = () => {
             />
           </div>
           <Heading title={title} subtitle={subtitle} />
+          {loading && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+              <Leaf className="w-20 h-20 text-green-600 animate-spin" />
+            </div>
+          )}
 
           <div className="mt-4 flex justify-center">
             <form className="space-y-5 mt-4 w-full max-w-3xl">

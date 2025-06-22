@@ -1,6 +1,10 @@
 import { Bell, MapPin, Search, SlidersHorizontal, Leaf } from "lucide-react";
 
-const HeaderWithSearch = () => (
+const HeaderWithSearch = ({
+  onSearch,
+}: {
+  onSearch: (query: string) => void;
+}) => (
   <div className="relative bg-green-50 sticky top-0 z-100 shadow-sm  ">
     <Leaf className="hidden sm:block w-16 h-15 text-green-500 absolute top-10 left-12" />
 
@@ -29,6 +33,7 @@ const HeaderWithSearch = () => (
             type="text"
             placeholder="Find fresh, farm-direct produce..."
             className="flex-grow bg-transparent focus:outline-none text-sm"
+            onChange={(e) => onSearch(e.target.value)}
           />
           <SlidersHorizontal className="w-4 h-4 text-gray-500 ml-2" />
         </div>

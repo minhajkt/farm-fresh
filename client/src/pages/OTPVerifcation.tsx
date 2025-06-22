@@ -9,21 +9,26 @@ import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Leaf } from "lucide-react";
 
 const OTPVerification = () => {
   const { title, subtitle } = HEADING_TEXT.OTPDetails;
+  const [loading, setLoading] = useState(false);
   const {phone} = useFormContext()
   const [otp, setOtp] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
+    setLoading(true)
     try {
       await verifyOTP(phone, otp);
-      toast.success('OTP verification success')
+      toast.success("OTP verification success");
       navigate("/home");
     } catch (err) {
       toast.error((err as Error).message || "Something went wrong");
       // alert((err as Error).message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,10 +47,15 @@ const OTPVerification = () => {
           <Heading title={title} subtitle={subtitle} />
 
           <OtpInput onChange={setOtp} />
+          {loading && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
+              <Leaf className="w-20 h-20 text-green-600 animate-spin" />
+            </div>
+          )}
           <OtpTimerResend
             duration={30}
             onResend={async () => {
-              await resendOTP(phone); 
+              await resendOTP(phone);
             }}
           />
         </div>

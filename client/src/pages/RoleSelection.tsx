@@ -18,7 +18,9 @@ const RoleSelection = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    if (role) {
+    if (role === "Farmer") {
+      navigate("/farm");
+    } else if (role === "Buyer") {
       navigate("/user");
     }
   };
