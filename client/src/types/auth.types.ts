@@ -79,3 +79,16 @@ export interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement
   placeholder?: string;
   icon?: ReactNode;
 }
+
+export type ImgProps = {
+  onImageLoad: () => void;
+};
+
+export interface Product {
+  _id: string;
+  item: string;
+  price: number;
+  imageUrl: string;
+  farmer: {
+    name:string;}
+}

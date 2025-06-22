@@ -4,7 +4,6 @@ import SeasonalProducts from "../components/SeasonalProducts";
 import NavItems from "../components/NavItems";
 import { useState } from "react";
 
-
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -18,6 +17,6 @@ const HomePage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default HomePage
+export default HomePage;

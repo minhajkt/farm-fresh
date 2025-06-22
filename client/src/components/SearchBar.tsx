@@ -1,10 +1,14 @@
 import { Bell, MapPin, Search, SlidersHorizontal, Leaf } from "lucide-react";
+import { useFormContext } from "../context/FormContext";
 
 const HeaderWithSearch = ({
   onSearch,
 }: {
   onSearch: (query: string) => void;
-}) => (
+}) => {
+  const { location } = useFormContext();
+  // console.log('loc', location)
+  return(
   <div className="relative bg-green-50 sticky top-0 z-100 shadow-sm  ">
     <Leaf className="hidden sm:block w-16 h-15 text-green-500 absolute top-10 left-12" />
 
@@ -18,7 +22,7 @@ const HeaderWithSearch = ({
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center text-sm text-gray-600">
           <MapPin className="w-4 h-4 text-green-600 mr-1" />
-          <span className="truncate">Delivering to Malappuram, Pandikkad</span>
+          <span className="truncate">Delivering to {location}</span>
         </div>
         <div className="relative">
           <Bell className="w-5 h-5 text-gray-600 -mt-5" />
@@ -41,5 +45,5 @@ const HeaderWithSearch = ({
     </div>
   </div>
 );
-
+}
 export default HeaderWithSearch;

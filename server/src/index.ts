@@ -4,7 +4,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import authRoutes from './routes/auth.routes'
-import { errorHandler } from "./middlewares/errorHandler";
+import productRoutes from "./routes/product.routes";
+import path from "path";
 
 dotenv.config();
 
@@ -20,16 +21,18 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+
 
 const port = process.env.PORT || 3000;
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello world");
 });
 
-// app.use(errorHandler as express.ErrorRequestHandler);
 
 app.listen(port, () => {
   console.log(`Listening to port ${port}`);

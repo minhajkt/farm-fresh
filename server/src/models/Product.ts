@@ -2,9 +2,9 @@ import mongoose, { Document, Schema } from "mongoose";
 
 export interface IProduct extends Document {
   farmer: mongoose.Types.ObjectId;
-  item: string;
+  item: string
   price: number;
-  description?: string;
+  // description?: string;
   imageUrl?: string;
 }
 
@@ -13,7 +13,7 @@ const productSchema = new Schema<IProduct>(
     farmer: { type: Schema.Types.ObjectId, ref: "User", required: true },
     item: { type: String, required: true },
     price: { type: Number, required: true },
-    description: String,
+    // description: String,
     imageUrl: String,
   },
   {

@@ -64,7 +64,10 @@ const FarmDetails = () => {
           </div>
         </div>
 
-        <Button />
+        <p className="text-center text-xs text-red-600 mt-4 mb-2">
+          This page is currently under maintenance. Please check back later.
+        </p>
+        <Button disabled/>
       </div>
     </div>
   );
