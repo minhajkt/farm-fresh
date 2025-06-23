@@ -96,3 +96,9 @@ export interface Product {
   farmer: {
     name:string;}
 }
+
+export interface ImageWithLoaderProps {
+  src: string;
+  alt: string;
+  className?: string; 
+}
