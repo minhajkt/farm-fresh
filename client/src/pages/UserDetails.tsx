@@ -18,8 +18,7 @@ const UserDetails = () => {
   const { name, phone, location, setName, setPhone, setLocation, role, language } = useFormContext();
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const phoneRegex = /^\d{10}$/;
-  const isValid = name.trim().length > 3 && phoneRegex.test(phone.trim()) && location.length > 3;
+  const isValid = !nameError && !phoneError && location;
 
   const navigate = useNavigate();
 
@@ -113,7 +112,7 @@ const UserDetails = () => {
                   setPhone(e.target.value);
                   if (phoneError) setPhoneError(validatePhone(e.target.value));
                 }}
-                onBlur={() => setPhoneError(validatePhone(name))}
+                onBlur={() => setPhoneError(validatePhone(phoneError))}
                 error={phoneError}
               />
             </form>
