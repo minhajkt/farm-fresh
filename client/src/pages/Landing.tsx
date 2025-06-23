@@ -19,22 +19,22 @@ const Landing = () => {
     navigate("/language");
   };
   return (
-    <div className="min-h-screen flex flex-col justify-start bg-white relative">
-      <HeroSection />
-      <div className="overflow-x-hidden px-0">
-        <Suspense
-          fallback={
-            <div className="min-h-[200px] flex items-center justify-center">
-              <Leaf className="w-12 h-12 text-green-600 animate-spin" />
-            </div>
-          }
-        >
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-white">
+          <Leaf className="w-12 h-12 text-green-600 animate-spin" />
+        </div>
+      }
+    >
+      <div className="min-h-screen flex flex-col justify-start bg-white relative">
+        <HeroSection />
+        <div className="overflow-x-hidden px-0">
           <LazyTopImageGrid />
           <LazyBottomImageGrid />
-      <Button onClick={handleContinue} />
-        </Suspense>
+          <Button onClick={handleContinue} />
+        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
 
