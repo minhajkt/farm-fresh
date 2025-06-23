@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ImageWithLoader from "./ImageWithLoader";
 
 const TOTAL_BOTTOM_IMAGES = 5; 
