@@ -36,7 +36,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   icon?: ReactNode;
   error?: string;
-  onBlur?: () => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export interface LanguageCardProps {

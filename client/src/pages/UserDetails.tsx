@@ -18,7 +18,8 @@ const UserDetails = () => {
   const { name, phone, location, setName, setPhone, setLocation, role, language } = useFormContext();
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
-  const isValid = !nameError && !phoneError && location;
+  const isValid =
+    !validateName(name) && !validatePhone(phone) && !!location.trim();
 
   const navigate = useNavigate();
 
@@ -26,6 +27,15 @@ const UserDetails = () => {
 
   const handleSubmit = async () => {
     setLoading(true)
+    const nameErr = validateName(name);
+    const phoneErr = validatePhone(phone);
+
+    setNameError(nameErr);
+    setPhoneError(phoneErr);
+
+    if (nameErr || phoneErr || !location.trim()) {
+      return; 
+    }
     try {
       if (!role || !language) {
         toast.warn("Role and language are required");
@@ -71,7 +81,7 @@ const UserDetails = () => {
                   setName(e.target.value);
                   if (nameError) setNameError(validateName(e.target.value));
                 }}
-                onBlur={() => setNameError(validateName(name))}
+                onBlur={(e) => setNameError(validateName(e.target.value))}
                 error={nameError}
               />
               <SelectField
@@ -112,7 +122,7 @@ const UserDetails = () => {
                   setPhone(e.target.value);
                   if (phoneError) setPhoneError(validatePhone(e.target.value));
                 }}
-                onBlur={() => setPhoneError(validatePhone(phoneError))}
+                onBlur={(e) => setPhoneError(validatePhone(e.target.value))}
                 error={phoneError}
               />
             </form>
