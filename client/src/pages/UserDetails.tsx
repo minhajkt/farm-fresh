@@ -10,12 +10,16 @@ import { registerUser } from "../services/auth.services";
 import { toast } from "react-toastify"; 
 import { useState } from "react";
 import { Leaf } from "lucide-react";
+import { validateName, validatePhone } from "../utils/validation";
 
 const UserDetails = () => {
   const { title, subtitle } = HEADING_TEXT.userDetails;
   const [loading, setLoading] = useState(false)
   const { name, phone, location, setName, setPhone, setLocation, role, language } = useFormContext();
-  const isValid = name.trim() && phone.trim() && location;
+  const [nameError, setNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const phoneRegex = /^\d{10}$/;
+  const isValid = name.trim().length > 3 && phoneRegex.test(phone.trim()) && location.length > 3;
 
   const navigate = useNavigate();
 
@@ -64,7 +68,12 @@ const UserDetails = () => {
               <InputField
                 placeholder="Enter your name here"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (nameError) setNameError(validateName(e.target.value));
+                }}
+                onBlur={() => setNameError(validateName(name))}
+                error={nameError}
               />
               <SelectField
                 placeholder="Select your delivery location"
@@ -100,7 +109,12 @@ const UserDetails = () => {
                 type="tel"
                 placeholder="Enter your phone number (for OTP verification)"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  if (phoneError) setPhoneError(validatePhone(e.target.value));
+                }}
+                onBlur={() => setPhoneError(validatePhone(name))}
+                error={phoneError}
               />
             </form>
           </div>

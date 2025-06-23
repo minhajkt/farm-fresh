@@ -1,11 +1,19 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { OtpInputProps } from "../types/auth.types";
 
 
 
-const OtpInput = ({ length = 4, onChange }: OtpInputProps) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const OtpInput = ({ length = 4, onChange,value = "", resetTrigger = 0 }: OtpInputProps) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
+
+  useEffect(() => {
+    const cleared = Array(length).fill("");
+    setOtp(cleared);
+    onChange?.("");
+    inputsRef.current[0]?.focus();
+  }, [resetTrigger, length]);
 
   const handleChange = (value: string, index: number) => {
     if (!/^\d*$/.test(value)) return; 

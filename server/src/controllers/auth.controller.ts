@@ -16,6 +16,7 @@ export class AuthController {
       res.status(400).json({ success: false, message: error.message });
     }
   }
+  
 
   async verifyOtp(req: Request, res: Response): Promise<void> {
     const { phone, otp } = req.body;

@@ -16,6 +16,7 @@ const OTPVerification = () => {
   const [loading, setLoading] = useState(false);
   const {phone} = useFormContext()
   const [otp, setOtp] = useState('')
+  const [resetTrigger, setResetTrigger] = useState(0);
   const navigate = useNavigate()
 
   const handleSubmit = async () => {
@@ -29,6 +30,17 @@ const OTPVerification = () => {
       // alert((err as Error).message || "Something went wrong");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResend = async () => {
+    try {
+      await resendOTP(phone);
+      toast.success("OTP resent successfully");
+      setResetTrigger((prev) => prev + 1); 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
+      toast.error("Failed to resend OTP");
     }
   };
 
@@ -46,18 +58,13 @@ const OTPVerification = () => {
           </div>
           <Heading title={title} subtitle={subtitle} />
 
-          <OtpInput onChange={setOtp} />
+          <OtpInput onChange={setOtp} resetTrigger={resetTrigger} />
           {loading && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm">
               <Leaf className="w-20 h-20 text-green-600 animate-spin" />
             </div>
           )}
-          <OtpTimerResend
-            duration={30}
-            onResend={async () => {
-              await resendOTP(phone);
-            }}
-          />
+          <OtpTimerResend duration={30} onResend={handleResend} />
         </div>
 
         <Button disabled={!otp} onClick={handleSubmit} />

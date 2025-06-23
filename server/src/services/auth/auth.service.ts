@@ -21,14 +21,17 @@ export class AuthService implements IAuthService {
       );
       if (existingUser) {
         throw new Error("Phone number already registered");
+        
       }
 
       const otp = generateOtp();
+      const otpExpires = new Date(Date.now() + 30 * 1000);
 
       await sendOtp(phone, otp);
       const newUser = await this.userRepository.createUser({
         ...userData,
         otp,
+        otpExpires
       });
 
       return newUser;
@@ -36,7 +39,8 @@ export class AuthService implements IAuthService {
       if (error.code === 11000 && error.message.includes("phone")) {
         console.error("Registration error:", error);
         throw new Error("Phone number already registered");
-      } else if (error.code === 21608 && error.message.includes("unverified")) {
+      } 
+      else if (error.code === 21608 && error.message.includes("unverified")) {
         throw new Error("Phone number is invalid or unverfied");
       }
       throw error;
@@ -51,6 +55,10 @@ export class AuthService implements IAuthService {
 
       if (user.otp !== otp) {
         throw new Error("Invalid OTP");
+      }
+      
+      if (!user.otpExpires || user.otpExpires < new Date()) {
+        throw new Error("OTP has expired");
       }
 
       user.isVerified = true;
@@ -80,8 +88,9 @@ export class AuthService implements IAuthService {
     }
 
     const otp = generateOtp();
+    const otpExpires = new Date(Date.now() + 30 * 1000);
     await sendOtp(formattedPhone, otp);
 
-    await this.userRepository.updateOtp(formattedPhone, otp);
+    await this.userRepository.updateOtp(formattedPhone, otp, otpExpires);
   }
 }

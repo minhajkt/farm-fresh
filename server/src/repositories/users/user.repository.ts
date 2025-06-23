@@ -19,7 +19,7 @@ export class UserRepository extends BaseRepository<IUser> implements IUserReposi
     return await this.update(userId, userData)
   }
 
-  async updateOtp(phone: string, otp: string): Promise<void> {
-    await this.updateOne({ phone }, { otp  });
+  async updateOtp(phone: string, otp: string, otpExpires: Date): Promise<void> {
+    await this.updateOne({ phone }, { otp, otpExpires  });
   }
 }

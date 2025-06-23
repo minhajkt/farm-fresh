@@ -9,3 +9,4 @@ client/.env
 server/node_modules/
 server/dist/
 server/.env
+config/firebase-service-account.json

@@ -35,6 +35,8 @@ import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes } from "react
 export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   icon?: ReactNode;
+  error?: string;
+  onBlur?: () => void;
 }
 
 export interface LanguageCardProps {
@@ -51,6 +53,8 @@ export interface LanguageGridProps {
 export interface OtpInputProps {
   length?: number;
   onChange?: (value: string) => void;
+  value?: string;
+  resetTrigger?: number;
 }
 
 export interface timerProps {
