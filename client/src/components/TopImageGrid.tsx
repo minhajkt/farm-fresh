@@ -4,6 +4,7 @@ const TopImageGrid = () => (
       <img
         src="/images/carry.jpg"
         alt="img1"
+        loading="lazy"
         className="rounded-r-3xl rounded-l-none w-full h-[110px] sm:h-[250px] object-cover hover-zoom"
       />
     </div>
@@ -11,6 +12,7 @@ const TopImageGrid = () => (
       <img
         src="/images/delivery.jpeg"
         alt="img2"
+        loading="lazy"
         className="top-mid-images hover-zoom"
       />
     </div>
@@ -18,6 +20,7 @@ const TopImageGrid = () => (
       <img
         src="/images/paddy.png"
         alt="img3"
+        loading="lazy"
         className="top-mid-images hover-zoom"
       />
     </div>
@@ -25,6 +28,7 @@ const TopImageGrid = () => (
       <img
         src="/images/strawberry.jpeg"
         alt="img4"
+        loading="lazy"
         className="rounded-r-none rounded-l-3xl w-full h-[110px] sm:h-[250px] object-cover hover-zoom"
       />
     </div>

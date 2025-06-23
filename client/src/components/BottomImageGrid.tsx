@@ -4,6 +4,7 @@ const BottomImageGrid = () => (
       <img
         src="/images/farmer.jpg"
         alt="img4"
+        loading="lazy"
         className="rounded-r-3xl rounded-l-none w-full h-[90px] sm:h-[200px] object-cover hover-zoom"
       />
     </div>
@@ -11,6 +12,7 @@ const BottomImageGrid = () => (
       <img
         src="/images/tractor.jpg"
         alt="img5"
+        loading="lazy"
         className="bottom-mid-images hover-zoom"
       />
     </div>
@@ -18,6 +20,7 @@ const BottomImageGrid = () => (
       <img
         src="/images/farm.jpg"
         alt="img6"
+        loading="lazy"
         className="bottom-mid-images hover-zoom"
       />
     </div>
@@ -25,6 +28,7 @@ const BottomImageGrid = () => (
       <img
         src="/images/basket.jpg"
         alt="img7"
+        loading="lazy"
         className="bottom-mid-images hover-zoom"
       />
     </div>
@@ -32,6 +36,7 @@ const BottomImageGrid = () => (
       <img
         src="/images/farm2.jpg"
         alt="img8"
+        loading="lazy"
         className="rounded-r-none rounded-l-3xl w-full h-[90px] sm:h-[200px] object-cover hover-zoom"
       />
     </div>
