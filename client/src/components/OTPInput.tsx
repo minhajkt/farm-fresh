@@ -3,8 +3,7 @@ import type { OtpInputProps } from "../types/auth.types";
 
 
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const OtpInput = ({ length = 4, onChange,value = "", resetTrigger = 0 }: OtpInputProps) => {
+const OtpInput = ({ length = 4, onChange, resetTrigger = 0 }: OtpInputProps) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
 
